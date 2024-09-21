@@ -37,7 +37,7 @@ python script_name.py --input_file speech.wav --output_file adversarial_speech.w
 ### 2. Использование PGD атаки с настройкой параметров
 
 ```bash
-python script_name.py --input_file speech.wav --output_file pgd_adversarial.wav --attack pgd --epsilon 0.05 --alpha 0.005 --num_iter 20
+python script.py --input_file speech.wav --output_file pgd_adversarial.wav --attack pgd --epsilon 0.05 --alpha 0.005 --num_iter 20
 ```
 
 Здесь мы используем PGD атаку с меньшим значением epsilon, меньшим шагом alpha и большим количеством итераций.
@@ -45,7 +45,7 @@ python script_name.py --input_file speech.wav --output_file pgd_adversarial.wav 
 ### 3. Применение атаки Карлини-Вагнера
 
 ```bash
-python script_name.py --input_file speech.wav --output_file cw_adversarial.wav --attack cw --num_iter 50 --learning_rate 0.005
+python script.py --input_file speech.wav --output_file cw_adversarial.wav --attack cw --num_iter 50 --learning_rate 0.005
 ```
 
 Этот пример демонстрирует использование атаки Карлини-Вагнера с увеличенным количеством итераций и уменьшенной скоростью обучения.
@@ -53,7 +53,7 @@ python script_name.py --input_file speech.wav --output_file cw_adversarial.wav -
 ### 4. Изменение порога обнаружения adversarial примеров
 
 ```bash
-python script_name.py --input_file speech.wav --output_file adversarial.wav --attack fgsm --threshold 0.05
+python script.py --input_file speech.wav --output_file adversarial.wav --attack fgsm --threshold 0.05
 ```
 
 Здесь мы уменьшаем порог обнаружения adversarial примеров, что может привести к более чувствительному обнаружению.
@@ -61,7 +61,7 @@ python script_name.py --input_file speech.wav --output_file adversarial.wav --at
 ### 5. Использование другой модели Vosk
 
 ```bash
-python script_name.py --input_file speech.wav --output_file adversarial.wav --model_path path/to/custom/vosk/model
+python script.py --input_file speech.wav --output_file adversarial.wav --model_path path/to/custom/vosk/model
 ```
 
 Этот пример показывает, как использовать другую модель Vosk, расположенную в нестандартном месте.
@@ -69,7 +69,7 @@ python script_name.py --input_file speech.wav --output_file adversarial.wav --mo
 ### 6. Обработка аудио с другой частотой дискретизации
 
 ```bash
-python script_name.py --input_file high_quality_speech.wav --output_file adversarial.wav --attack fgsm --sample_rate 44100
+python script.py --input_file high_quality_speech.wav --output_file adversarial.wav --attack fgsm --sample_rate 44100
 ```
 
 Здесь мы обрабатываем аудиофайл с более высокой частотой дискретизации (44.1 кГц вместо стандартных 16 кГц).
@@ -79,9 +79,9 @@ python script_name.py --input_file high_quality_speech.wav --output_file adversa
 Чтобы сравнить эффективность разных методов атак, вы можете выполнить следующие команды и сравнить результаты:
 
 ```bash
-python script_name.py --input_file speech.wav --output_file fgsm_adversarial.wav --attack fgsm
-python script_name.py --input_file speech.wav --output_file pgd_adversarial.wav --attack pgd
-python script_name.py --input_file speech.wav --output_file cw_adversarial.wav --attack cw
+python script.py --input_file speech.wav --output_file fgsm_adversarial.wav --attack fgsm
+python script.py --input_file speech.wav --output_file pgd_adversarial.wav --attack pgd
+python script.py --input_file speech.wav --output_file cw_adversarial.wav --attack cw
 ```
 
 ### 8. Анализ влияния epsilon на FGSM атаку
@@ -89,9 +89,9 @@ python script_name.py --input_file speech.wav --output_file cw_adversarial.wav -
 Чтобы понять, как параметр epsilon влияет на результаты FGSM атаки, попробуйте разные значения:
 
 ```bash
-python script_name.py --input_file speech.wav --output_file fgsm_low.wav --attack fgsm --epsilon 0.01
-python script_name.py --input_file speech.wav --output_file fgsm_medium.wav --attack fgsm --epsilon 0.1
-python script_name.py --input_file speech.wav --output_file fgsm_high.wav --attack fgsm --epsilon 0.5
+python script.py --input_file speech.wav --output_file fgsm_low.wav --attack fgsm --epsilon 0.01
+python script.py --input_file speech.wav --output_file fgsm_medium.wav --attack fgsm --epsilon 0.1
+python script.py --input_file speech.wav --output_file fgsm_high.wav --attack fgsm --epsilon 0.5
 ```
 
 Сравните получившиеся аудиофайлы и транскрипции, чтобы увидеть, как изменение epsilon влияет на качество звука и эффективность атаки.
