@@ -1,3 +1,7 @@
+  ```
+@wearetyomsmnv && @ivolake
+```
+
 # Инструмент распознавания речи и adversarial атак
 
 ## Описание
