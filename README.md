@@ -26,6 +26,95 @@ pip install -r requirements.txt
 
 
 
+
+# PGD атаки
+
+# 1. Базовая PGD атака
+python script.py --input_file voice.wav \
+                 --model_path vosk-model-ru \
+                 --output_file pgd_basic.wav \
+                 --attack pgd \
+                 --epsilon 0.1 \
+                 --alpha 0.01 \
+                 --num_iter 40
+
+# 2. PGD атака с увеличенной силой (больше epsilon)
+python script.py --input_file voice.wav \
+                 --model_path vosk-model-ru \
+                 --output_file pgd_strong.wav \
+                 --attack pgd \
+                 --epsilon 0.3 \
+                 --alpha 0.02 \
+                 --num_iter 40
+
+# 3. PGD атака с большим количеством итераций
+python script.py --input_file voice.wav \
+                 --model_path vosk-model-ru \
+                 --output_file pgd_many_iter.wav \
+                 --attack pgd \
+                 --epsilon 0.1 \
+                 --alpha 0.005 \
+                 --num_iter 100
+
+# 4. PGD атака с автоматической настройкой
+python script.py --input_file voice.wav \
+                 --model_path vosk-model-ru \
+                 --output_file pgd_auto.wav \
+                 --attack pgd \
+                 --epsilon 0.1 \
+                 --alpha 0.01 \
+                 --num_iter 40 \
+                 --auto_tune
+
+# Carlini-Wagner атаки
+
+# 1. Базовая Carlini-Wagner атака
+python script.py --input_file voice.wav \
+                 --model_path vosk-model-ru \
+                 --output_file cw_basic.wav \
+                 --attack carlini \
+                 --num_iter 100 \
+                 --learning_rate 0.01
+
+# 2. Carlini-Wagner атака с большим количеством итераций
+python script.py --input_file voice.wav \
+                 --model_path vosk-model-ru \
+                 --output_file cw_long.wav \
+                 --attack carlini \
+                 --num_iter 500 \
+                 --learning_rate 0.005
+
+# 3. Carlini-Wagner атака с автоматической настройкой
+python script.py --input_file voice.wav \
+                 --model_path vosk-model-ru \
+                 --output_file cw_auto.wav \
+                 --attack carlini \
+                 --num_iter 100 \
+                 --learning_rate 0.01 \
+                 --auto_tune
+
+# 4. Carlini-Wagner атака с другой частотой дискретизации
+python script.py --input_file voice_44100.wav \
+                 --model_path vosk-model-ru \
+                 --output_file cw_44100.wav \
+                 --attack carlini \
+                 --num_iter 100 \
+                 --learning_rate 0.01 \
+                 --sample_rate 44100
+
+# Сравнение атак (запуск нескольких атак последовательно)
+for attack in pgd carlini; do
+  for epsilon in 0.1 0.2 0.3; do
+    python script.py --input_file voice.wav \
+                     --model_path vosk-model-ru \
+                     --output_file ${attack}_eps${epsilon}.wav \
+                     --attack $attack \
+                     --epsilon $epsilon \
+                     --num_iter 100
+  done
+done
+
+
 ## Примеры использования
 
 Ниже приведены различные примеры использования инструмента с разными параметрами и сценариями.
